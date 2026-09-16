@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "dialogbrain",
+  "description": "DialogBrain plugins for Claude Code",
+  "owner": { "name": "DialogBrain", "email": "support@dialogbrain.com" },
+  "plugins": [
+    {
+      "name": "dialogbrain",
+      "description": "DialogBrain from Claude Code: inbox, contacts, calls, agents, tasks and knowledge as tools, plus setup skills.",
+      "author": { "name": "DialogBrain" },
+      "source": ".",
+      "category": "productivity",
+      "homepage": "https://dialogbrain.com/help/mcp"
+    }
+  ]
+}

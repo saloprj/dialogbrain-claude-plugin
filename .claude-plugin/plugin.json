@@ -1,0 +1,10 @@
+{
+  "name": "dialogbrain",
+  "description": "DialogBrain from Claude Code: your inbox, contacts, calls, agents, tasks and knowledge as tools, plus skills that know how to set them up.",
+  "version": "0.1.0",
+  "author": { "name": "DialogBrain", "email": "support@dialogbrain.com" },
+  "homepage": "https://dialogbrain.com/help/mcp",
+  "repository": "https://github.com/saloprj/dialogbrain-claude-plugin",
+  "license": "MIT",
+  "keywords": ["dialogbrain", "mcp", "messaging", "whatsapp", "telegram", "voice-agent", "livechat", "crm"]
+}
