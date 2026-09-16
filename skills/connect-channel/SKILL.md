@@ -27,10 +27,10 @@ One tool decides: `channels.connect`.
      `connect_url` as-is and say the one line in `what_the_person_does`.
      Do not describe where the button is in settings; the link opens the
      dialog directly.
-   - If the error mentions **billing** → it contains the billing link; give
-     it; nothing works until that is done.
-   - If the error says **Permission denied** → the person is a viewer; a
-     workspace owner or admin has to do this.
+   - Error `"billing_required"` → give the `billing_url` from the error's
+     data (it is also in the text); nothing works until that is done.
+   - Error `"permission_denied"` → the person is a viewer, or the call has no
+     signed-in person behind it; a workspace owner or admin has to do this.
 3. **Confirm it took**: `channels.get_profile` (`channel_account_id`) for the
    new account, or `search.threads` (`query`, `since`) once a first message
    arrives.
