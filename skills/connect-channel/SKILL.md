@@ -22,10 +22,11 @@ One tool decides: `channels.connect`.
      account password. The person must also give the IMAP and SMTP hosts
      (well known for major providers; ask otherwise). For Gmail prefer the
      link (Google sign-in) over IMAP.
-   - If the error says the channel **needs the person** → the message
-     already contains the link and what will happen there; paste the link
-     as-is and say that one line. Do not describe where the button is in
-     settings; the link opens the dialog directly.
+   - If the answer has `needs_person` true → this is not an error: the
+     channel is connected by the person, not by the tool. Paste the
+     `connect_url` as-is and say the one line in `what_the_person_does`.
+     Do not describe where the button is in settings; the link opens the
+     dialog directly.
    - If the error mentions **billing** → it contains the billing link; give
      it; nothing works until that is done.
    - If the error says **Permission denied** → the person is a viewer; a
@@ -41,7 +42,7 @@ One tool decides: `channels.connect`.
 - Never ask for or relay a WhatsApp, Telegram, Instagram or Google password.
   Those channels are interactive on purpose: the sign-in must not travel
   through a chat. Give the link.
-- Never say "I connected it" for a `"needs_person"` result. The person does
+- Never say "I connected it" when `needs_person` is true. The person does
   the connecting; you gave the link.
 - A website widget is not a channel to connect: use the
   `setup-livechat-widget` skill.
