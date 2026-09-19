@@ -6,11 +6,11 @@
   "plugins": [
     {
       "name": "dialogbrain",
-      "description": "DialogBrain from Claude Code: inbox, contacts, calls, agents, tasks and knowledge as tools, plus setup skills.",
+      "description": "Connect WhatsApp, Telegram, email and a website chat to one inbox and build AI agents that answer customers — from Claude Code.",
       "author": { "name": "DialogBrain" },
       "source": ".",
       "category": "productivity",
-      "homepage": "https://dialogbrain.com/help/mcp"
+      "homepage": "https://dialogbrain.com/help/set-up-from-ai-assistant"
     }
   ]
 }
