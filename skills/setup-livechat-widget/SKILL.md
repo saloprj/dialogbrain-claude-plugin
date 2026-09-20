@@ -24,10 +24,14 @@ domains. Most businesses need exactly one.
    it verbatim. It is two script tags; tell the person to paste them before
    `</body>` on every page, or into their tag manager. Platform notes:
    https://dialogbrain.com/help/livechat-widget (#wordpress, #shopify, #wix).
-5. **Make sure someone answers.** `agents.list` (`status` `"active"`) — if no
-   agent is set up to answer web chat, say so plainly and offer the
-   `create-agent` skill. A widget with no agent collects conversations nobody
-   answers.
+5. **Make sure someone answers, and check it, do not assume it.**
+   `agents.list` (`status` `"active"`), then `agents.get` on each candidate
+   and look at its triggers: the widget is answered only by an enabled
+   `incoming_message` trigger whose `channel_types` include `"livechat"` or
+   has no channel filter at all. Nine active agents with no such trigger
+   means nobody answers. If that is the case, say so plainly and offer the
+   `create-agent` skill. A widget with no agent collects conversations
+   nobody answers.
 
 ## Do not
 
