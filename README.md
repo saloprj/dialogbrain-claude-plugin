@@ -53,14 +53,31 @@ Ask in plain words; the matching skill loads on its own, and only then.
   about, then picks what happens — a reply, a note to you, a human takeover, a
   task on the board.
 
-## Letting DialogBrain reach you
+## Letting DialogBrain reach you (not available to everyone yet)
 
 The plugin also ships a channel server, so a DialogBrain agent can hand work
 to this session instead of answering by itself — a new lead worth judging, a
 task assigned from a phone.
 
-Nothing happens until you set it up: with no API key the channel stays off,
-the session is unaffected, and the plugin's tools work as before.
+**Read this before trying.** Inbound push into a Claude Code session is an
+experimental feature of Claude Code, and two of its gates are not ours to
+open:
+
+- the Channels feature has to be enabled for your account;
+- the channel has to be approved. Approval comes from an allowlist Claude Code
+  itself carries, or from your organisation's managed settings. A plugin that
+  is on neither is refused unless the session is started with
+  `--dangerously-load-development-channels`, which is meant for local
+  development.
+
+So installing the plugin does NOT give you this. It gives you the tools, the
+skills and the agents, which need no flags at all. If the steps below end with
+Claude Code saying the channel "is not on the approved channels allowlist",
+that is this gate, not a mistake on your side, and nothing in the plugin can
+lift it.
+
+Nothing happens until you set it up either: with no API key the channel stays
+off, the session is unaffected, and the plugin's tools work as before.
 
 It needs **Node.js 20 or newer on PATH** — Claude Code installed as a
 standalone binary does not bring one. Without it the channel never starts,
@@ -93,8 +110,16 @@ and the only evidence is a spawn error in the session's own MCP log, so check
 3. Ask for it in words: "wake me here when a new lead arrives". The
    `react-to-events` skill sets the rest up.
 
-If nothing arrives, ask DialogBrain which sessions it can see — an empty list
-means the channel is not registered, and the session's MCP log says why.
+Name the channel in ONE flag only. Listing it in both `--channels` and
+`--dangerously-load-development-channels` registers it twice — once without
+the development mark — and the check trips over the unmarked copy and refuses
+the lot.
+
+If nothing arrives, ask DialogBrain which sessions it can see. Being in that
+list proves only that the channel server reached the server: it opens its
+socket whether or not Claude Code is willing to deliver anything. The session's
+own MCP log is the honest answer — it says either "Channel notifications
+registered" or the reason it skipped them.
 
 ## Channels it can connect
 

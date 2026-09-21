@@ -159,8 +159,10 @@ Two things have to be true, and both are one-time setup:
   `claude --channels plugin:dialogbrain@dialogbrain`. Without it Claude Code
   silently drops every push, and the only trace is a line in the session's own
   MCP log. Approval also needs the plugin allowlisted in managed settings
-  (`channelsEnabled`, `allowedChannelPlugins`); running from a checkout instead
-  of the plugin needs `--dangerously-load-development-channels`.
+  (`channelsEnabled`, `allowedChannelPlugins`); a channel configured by hand
+  instead of coming from the plugin is named `server:<name>` and needs
+  `--dangerously-load-development-channels` as well. Every entry carries a
+  tag — a bare name is refused before the session starts.
 
 The flag is read at start, so switching it on means restarting the session.
 
