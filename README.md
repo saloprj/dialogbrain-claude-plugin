@@ -48,6 +48,10 @@ Ask in plain words; the matching skill loads on its own, and only then.
   track what is overdue, comment with screenshots.
 - **lead-report** — "where did we lose leads this week": queries analytics, reads
   the threads, and writes one summary.
+- **react-to-events** — "tell me when this person writes", "watch this group",
+  "notify me on every new lead": narrows the trigger to the messages you care
+  about, then picks what happens — a reply, a note to you, a human takeover, a
+  task on the board.
 
 ## Channels it can connect
 
