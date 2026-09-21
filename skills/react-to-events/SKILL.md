@@ -150,14 +150,25 @@ session reaches the workspace over MCP with its own key and is not limited by
 any agent's list.
 
 **Check first.** Call `workspace.desktops`. If this machine is not in that
-list, the desktop channel is not running here — it is a separate MCP server,
-**not shipped with this plugin** — and nothing in this section can reach you.
-Use step 2's options instead.
+list, nothing in this section can reach you — use step 2's options instead.
+Two things have to be true, and both are one-time setup:
 
-Where it is set up: the channel reads `~/.claude/channels/dialogbrain/.env`
-once at start (server address, an API key from the cabinet under Settings →
-Developer, and a stable name for this machine), so restart Claude Code after
-editing it. That name is the address, and it matters because the gateway
+- the channel needs an API key and a name for this machine, in
+  `~/.claude/channels/dialogbrain/.env`;
+- the session must have been STARTED with pushes enabled:
+  `claude --channels plugin:dialogbrain@dialogbrain`. Without it Claude Code
+  silently drops every push, and the only trace is a line in the session's own
+  MCP log. Approval also needs the plugin allowlisted in managed settings
+  (`channelsEnabled`, `allowedChannelPlugins`); running from a checkout instead
+  of the plugin needs `--dangerously-load-development-channels`.
+
+The flag is read at start, so switching it on means restarting the session.
+
+The channel ships with this plugin and reads
+`~/.claude/channels/dialogbrain/.env` once at start (an API key from the
+cabinet under Settings → Developer and a stable name for this machine; the
+server address comes from the plugin), so restart Claude Code after editing
+it. That name is the address, and it matters because the gateway
 hands an event to every connection the account has: with several sessions
 connected and none named, the work is deliberately delivered to none rather
 than to all of them.

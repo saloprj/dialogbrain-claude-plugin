@@ -53,6 +53,49 @@ Ask in plain words; the matching skill loads on its own, and only then.
   about, then picks what happens — a reply, a note to you, a human takeover, a
   task on the board.
 
+## Letting DialogBrain reach you
+
+The plugin also ships a channel server, so a DialogBrain agent can hand work
+to this session instead of answering by itself — a new lead worth judging, a
+task assigned from a phone.
+
+Nothing happens until you set it up: with no API key the channel stays off,
+the session is unaffected, and the plugin's tools work as before.
+
+It needs **Node.js 20 or newer on PATH** — Claude Code installed as a
+standalone binary does not bring one. Without it the channel never starts,
+and the only evidence is a spawn error in the session's own MCP log, so check
+`node --version` first.
+
+1. Put an API key (cabinet → Settings → Developer) and a name for this machine
+   in `~/.claude/channels/dialogbrain/.env`:
+
+   ```
+   DIALOGBRAIN_TOKEN=<your key>
+   DIALOGBRAIN_CHANNEL_NAME=<a name you will recognise>
+   ```
+
+2. Start Claude Code with pushes enabled — inbound push is off by default and
+   a running session cannot be switched on:
+
+   ```
+   claude --channels plugin:dialogbrain@dialogbrain
+   ```
+
+   On a managed machine the pair must also be approved once, in
+   `/etc/claude-code/managed-settings.json`:
+
+   ```json
+   { "channelsEnabled": true,
+     "allowedChannelPlugins": [{ "plugin": "dialogbrain", "marketplace": "dialogbrain" }] }
+   ```
+
+3. Ask for it in words: "wake me here when a new lead arrives". The
+   `react-to-events` skill sets the rest up.
+
+If nothing arrives, ask DialogBrain which sessions it can see — an empty list
+means the channel is not registered, and the session's MCP log says why.
+
 ## Channels it can connect
 
 WhatsApp, Telegram, a Telegram bot, Instagram, Facebook Messenger, email over
