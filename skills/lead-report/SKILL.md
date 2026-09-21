@@ -16,8 +16,12 @@ description: Answer "where are we losing leads" for a DialogBrain workspace — 
    three real examples per problem, not just the count.
 4. **One summary**, written for the owner, not the analyst: what is lost,
    where, one sentence each, and the single change that would recover the
-   most. Save it with `artifacts.create` (`title`, `html`, `access_level`
-   `"workspace"`) so it has a link, and paste the link.
+   most. Save it with `artifacts.create` (`title`, `html`). It answers with
+   two links: `app_url` opens for workspace members in the app; `url` is the
+   public page and exists only when you pass `access_level` `"shared"`. Paste
+   `app_url` for the owner. Pass `"shared"` and paste `url` only when the
+   report is meant for someone outside the workspace — a private artifact
+   has no public page, and its public link opens on nothing.
 5. **Offer the fix as an action**: an agent for the unanswered channel
    (`create-agent` skill), or a task for the person who owns it
    (`tasks-board` skill).
