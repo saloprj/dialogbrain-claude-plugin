@@ -1,10 +1,37 @@
 {
   "name": "dialogbrain",
   "description": "Connect WhatsApp, Telegram, email and a website chat to one inbox and build AI agents that answer customers — from Claude Code.",
-  "version": "0.1.1",
-  "author": { "name": "DialogBrain", "email": "support@dialogbrain.com" },
+  "version": "0.2.0",
+  "author": {
+    "name": "DialogBrain",
+    "email": "support@dialogbrain.com"
+  },
   "homepage": "https://dialogbrain.com/help/set-up-from-ai-assistant",
   "repository": "https://github.com/saloprj/dialogbrain-claude-plugin",
   "license": "MIT",
-  "keywords": ["dialogbrain", "mcp", "messaging", "whatsapp", "telegram", "voice-agent", "livechat", "crm"]
+  "keywords": [
+    "dialogbrain",
+    "mcp",
+    "messaging",
+    "whatsapp",
+    "telegram",
+    "voice-agent",
+    "livechat",
+    "crm"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "DialogBrain API key",
+      "description": "From your DialogBrain cabinet: Settings -> Developer -> API Keys. Leave it empty and the channel stays off; everything else in the plugin still works.",
+      "sensitive": true,
+      "required": false
+    },
+    "channel_name": {
+      "type": "string",
+      "title": "Name for this machine",
+      "description": "How this desktop appears when someone assigns work to it from a phone. Defaults to hostname:project-folder.",
+      "required": false
+    }
+  }
 }

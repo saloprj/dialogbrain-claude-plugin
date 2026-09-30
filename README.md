@@ -84,8 +84,14 @@ standalone binary does not bring one. Without it the channel never starts,
 and the only evidence is a spawn error in the session's own MCP log, so check
 `node --version` first.
 
-1. Put an API key (cabinet → Settings → Developer) and a name for this machine
-   in `~/.claude/channels/dialogbrain/.env`:
+1. Give the plugin an API key (cabinet → Settings → Developer) and a name for
+   this machine. Claude asks for both when you install the plugin, and the key
+   is stored the way your client stores a secret — nothing is written into
+   this repository or into a shell profile.
+
+   If you install from a checkout instead, the same two values can go in
+   `~/.claude/channels/dialogbrain/.env`, which the channel reads when the
+   plugin supplies nothing:
 
    ```
    DIALOGBRAIN_TOKEN=<your key>

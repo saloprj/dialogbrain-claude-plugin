@@ -5,9 +5,13 @@
   },
   "dialogbrain-channel": {
     "command": "node",
-    "args": ["${CLAUDE_PLUGIN_ROOT}/channel/server.mjs"],
+    "args": [
+      "${CLAUDE_PLUGIN_ROOT}/channel/server.mjs"
+    ],
     "env": {
-      "DIALOGBRAIN_API_URL_DEFAULT": "https://api.dialogbrain.com"
+      "DIALOGBRAIN_API_URL_DEFAULT": "https://api.dialogbrain.com",
+      "DIALOGBRAIN_TOKEN": "${user_config.api_key}",
+      "DIALOGBRAIN_CHANNEL_NAME": "${user_config.channel_name}"
     }
   }
 }
