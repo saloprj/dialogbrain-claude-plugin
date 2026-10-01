@@ -1,12 +1,16 @@
 {
   "name": "dialogbrain",
+  "displayName": "DialogBrain",
   "description": "Connect WhatsApp, Telegram, email and a website chat to one inbox and build AI agents that answer customers — from Claude Code.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "DialogBrain",
     "email": "support@dialogbrain.com"
   },
   "homepage": "https://dialogbrain.com/help/set-up-from-ai-assistant",
+  "documentationUrl": "https://dialogbrain.com/help/mcp",
+  "supportUrl": "https://dialogbrain.com/help",
+  "termsOfServiceUrl": "https://dialogbrain.com/terms",
   "privacyPolicyUrl": "https://dialogbrain.com/privacy",
   "icon": "./.claude-plugin/icon.png",
   "repository": "https://github.com/saloprj/dialogbrain-claude-plugin",
