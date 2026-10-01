@@ -2,7 +2,7 @@
   "name": "dialogbrain",
   "displayName": "DialogBrain",
   "description": "Connect WhatsApp, Telegram, email and a website chat to one inbox and build AI agents that answer customers — from Claude Code.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "DialogBrain",
     "email": "support@dialogbrain.com"

@@ -127,6 +127,36 @@ socket whether or not Claude Code is willing to deliver anything. The session's
 own MCP log is the honest answer — it says either "Channel notifications
 registered" or the reason it skipped them.
 
+## What the channel sends us, and when
+
+The channel server is the only part of this plugin that talks to anything on
+its own, and it stays silent until you give it an API key: with no key it
+prints one line and connects nothing.
+
+With a key, it opens a WebSocket to the DialogBrain server your key belongs to
+— `https://api.dialogbrain.com` unless you point it elsewhere — and introduces
+the session so a person can address work to this machine by name. That
+introduction, repeated on every reconnect, is:
+
+- the name you chose for this machine, or `hostname:project-folder` if you
+  chose none
+- the Claude Code session id, the project directory, the working directory,
+  the hostname and the process id
+- which Claude Code entrypoint started it and which subagent model it uses
+- the current git branch of the project directory
+- a one-line title for the session: its summary, or the first thing you typed,
+  cut to 120 characters
+
+That last line is what makes a desktop recognisable in a list of several, and
+it is the only session content that leaves your machine. Nothing else is read
+or sent: not your files, not the conversation, not the output. Everything
+after the introduction travels the other way — the messages your customers
+send you, pushed into the session.
+
+The key itself is stored by Claude Code when you install from the directory,
+or in `~/.claude/channels/dialogbrain/.env` when you install from a checkout,
+and is sent only as a header to the server it belongs to.
+
 ## Channels it can connect
 
 WhatsApp, Telegram, a Telegram bot, Instagram, Facebook Messenger, email over
