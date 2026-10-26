@@ -155,13 +155,19 @@ Two things have to be true, and both are one-time setup:
 
 - the channel needs an API key and a name for this machine, in
   `~/.claude/channels/dialogbrain/.env`;
-- the session must have been STARTED with pushes enabled:
-  `claude --channels plugin:dialogbrain@dialogbrain`. Without it Claude Code
-  silently drops every push, and the only trace is a line in the session's own
-  MCP log. Approval also needs the plugin allowlisted in managed settings
-  (`channelsEnabled`, `allowedChannelPlugins`); a channel configured by hand
-  instead of coming from the plugin is named `server:<name>` and needs
-  `--dangerously-load-development-channels` as well. Every entry carries a
+- the session must have been STARTED with pushes enabled. On a person's own
+  computer that is
+  `claude --dangerously-load-development-channels plugin:dialogbrain@dialogbrain`
+  (add `--resume <session id>` to restart the same session; it keeps its id).
+  The short `claude --channels plugin:dialogbrain@dialogbrain` works only where
+  managed settings allowlist the plugin (`channelsEnabled`,
+  `allowedChannelPlugins`) and is refused elsewhere ("not on the approved
+  channels allowlist"). Without either, Claude Code silently drops every push,
+  and the only trace is a line in the session's own MCP log. A channel
+  configured by hand instead of coming from the plugin is named
+  `server:<name>`; keep only one DialogBrain channel per session.
+- only messages from the other side wake it: what the connected account sends
+  itself is outgoing. Do not test a trigger by writing from that account. Every entry carries a
   tag — a bare name is refused before the session starts.
 
 The flag is read at start, so switching it on means restarting the session.

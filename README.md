@@ -99,13 +99,20 @@ and the only evidence is a spawn error in the session's own MCP log, so check
    ```
 
 2. Start Claude Code with pushes enabled — inbound push is off by default and
-   a running session cannot be switched on:
+   a running session cannot be switched on. On your own computer, while the
+   channel is not on Claude Code's approved list, that is the development flag
+   (it takes the plugin entry):
 
    ```
-   claude --channels plugin:dialogbrain@dialogbrain
+   claude --dangerously-load-development-channels plugin:dialogbrain@dialogbrain
+   # the same session again, keeping its id:
+   claude --resume <session id> --dangerously-load-development-channels plugin:dialogbrain@dialogbrain
    ```
 
-   On a managed machine the pair must also be approved once, in
+   Where an admin has approved the plugin in managed settings, the short form
+   is enough: `claude --channels plugin:dialogbrain@dialogbrain`. Without that
+   approval the short form is refused ("not on the approved channels
+   allowlist"). The approval goes once in
    `/etc/claude-code/managed-settings.json`:
 
    ```json
@@ -120,6 +127,14 @@ Name the channel in ONE flag only. Listing it in both `--channels` and
 `--dangerously-load-development-channels` registers it twice — once without
 the development mark — and the check trips over the unmarked copy and refuses
 the lot.
+
+Use ONE DialogBrain channel per session: if a project's `.mcp.json` also has a
+hand-configured `dialogbrain-channel`, remove it. Two channels register
+separately, possibly under two different keys, and work can go to the one
+Claude Code is not listening to.
+
+Only messages from the other side of a conversation trigger a push. What the
+connected account sends itself is outgoing and wakes nothing.
 
 If nothing arrives, ask DialogBrain which sessions it can see. Being in that
 list proves only that the channel server reached the server: it opens its
