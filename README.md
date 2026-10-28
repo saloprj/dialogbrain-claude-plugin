@@ -91,7 +91,7 @@ and the only evidence is a spawn error in the session's own MCP log, so check
 
    If you install from a checkout instead, the same two values can go in
    `~/.claude/channels/dialogbrain/.env`, which the channel reads when the
-   plugin supplies nothing:
+   plugin's own settings are empty (for the name, a `DIALOGBRAIN_CHANNEL_NAME` set in the shell that starts `claude` wins over both; for the key, a filled plugin key wins over a shell export):
 
    ```
    DIALOGBRAIN_TOKEN=<your key>

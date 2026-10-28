@@ -10,8 +10,8 @@
     ],
     "env": {
       "DIALOGBRAIN_API_URL_DEFAULT": "https://api.dialogbrain.com",
-      "DIALOGBRAIN_TOKEN": "${user_config.api_key}",
-      "DIALOGBRAIN_CHANNEL_NAME": "${user_config.channel_name}"
+      "DIALOGBRAIN_TOKEN_DEFAULT": "${user_config.api_key}",
+      "DIALOGBRAIN_CHANNEL_NAME_DEFAULT": "${user_config.channel_name}"
     }
   }
 }
