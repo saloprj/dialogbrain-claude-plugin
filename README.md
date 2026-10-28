@@ -5,7 +5,7 @@ build AI agents that answer your customers there — all from Claude Code.
 
 DialogBrain is a customer messaging platform: every channel lands in one shared
 inbox, with contacts, calls, a task board and AI agents on top. This plugin puts
-that workspace inside Claude Code as tools, plus six skills that know the order
+that workspace inside Claude Code as tools, plus seven skills that know the order
 of each setup job.
 
 ## Install
@@ -64,11 +64,11 @@ experimental feature of Claude Code, and two of its gates are not ours to
 open:
 
 - the Channels feature has to be enabled for your account;
-- the channel has to be approved. Approval comes from an allowlist Claude Code
-  itself carries, or from your organisation's managed settings. A plugin that
-  is on neither is refused unless the session is started with
-  `--dangerously-load-development-channels`, which is meant for local
-  development.
+- the channel has to be allowed. Claude Code allows a channel from its own
+  allowlist, or from your organisation's managed settings
+  (`allowedChannelPlugins`). A plugin on neither list is refused unless the
+  session is started with `--dangerously-load-development-channels`, which is
+  meant for local development.
 
 So installing the plugin does NOT give you this. It gives you the tools, the
 skills and the agents, which need no flags at all. If the steps below end with
@@ -98,27 +98,34 @@ and the only evidence is a spawn error in the session's own MCP log, so check
    DIALOGBRAIN_CHANNEL_NAME=<a name you will recognise>
    ```
 
-2. Start Claude Code with pushes enabled — inbound push is off by default and
-   a running session cannot be switched on. On your own computer, while the
-   channel is not on Claude Code's approved list, that is the development flag
-   (it takes the plugin entry):
-
-   ```
-   claude --dangerously-load-development-channels plugin:dialogbrain@dialogbrain
-   # the same session again, keeping its id:
-   claude --resume <session id> --dangerously-load-development-channels plugin:dialogbrain@dialogbrain
-   ```
-
-   Where an admin has approved the plugin in managed settings, the short form
-   is enough: `claude --channels plugin:dialogbrain@dialogbrain`. Without that
-   approval the short form is refused ("not on the approved channels
-   allowlist"). The approval goes once in
+2. Allow the channel once on the machine, then start Claude Code with
+   pushes enabled (inbound push is off by default, and a running session
+   cannot be switched on). An admin adds this to
    `/etc/claude-code/managed-settings.json`:
 
    ```json
    { "channelsEnabled": true,
      "allowedChannelPlugins": [{ "plugin": "dialogbrain", "marketplace": "dialogbrain" }] }
    ```
+
+   and every session on that machine starts with the short form:
+
+   ```
+   claude --channels plugin:dialogbrain@dialogbrain
+   # the same session again, keeping its id:
+   claude --channels plugin:dialogbrain@dialogbrain --resume <session id>
+   ```
+
+   Without the managed settings Claude Code refuses the short form, with the
+   message "is not on the approved channels allowlist". For a quick local try without them, the
+   development flag takes the same plugin entry:
+   `claude --dangerously-load-development-channels plugin:dialogbrain@dialogbrain`.
+
+   The session then appears by itself in DialogBrain under AI Agents →
+   "Claude Code sessions" (and disappears when you close it). Create an agent
+   for it there ("Create agent for this session") or pick it in an existing
+   Claude Code agent's Session card; that agent's triggers send their messages
+   to this session, and its Activity tab shows every call and answer.
 
 3. Ask for it in words: "wake me here when a new lead arrives". The
    `react-to-events` skill sets the rest up.
