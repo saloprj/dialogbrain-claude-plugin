@@ -3201,7 +3201,10 @@ function connectWS() {
               thread_id: task.thread_id || "",
               agent_name: task.agent_name || "",
               channel: task.channel || "",
-              task_id: task.task_id ? String(task.task_id) : ""
+              task_id: task.task_id ? String(task.task_id) : "",
+              user: task.asker?.name ? `${task.asker.name} (user ${task.asker.id})` : "",
+              workspace_id: task.workspace?.id ? String(task.workspace.id) : "",
+              workspace: task.workspace?.name || ""
             }
           }
         });
