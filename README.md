@@ -5,7 +5,7 @@ build AI agents that answer your customers there — all from Claude Code.
 
 DialogBrain is a customer messaging platform: every channel lands in one shared
 inbox, with contacts, calls, a task board and AI agents on top. This plugin puts
-that workspace inside Claude Code as tools, plus seven skills that know the order
+that workspace inside Claude Code as tools, plus eight skills that know the order
 of each setup job.
 
 ## Install
@@ -48,6 +48,9 @@ Ask in plain words; the matching skill loads on its own, and only then.
   track what is overdue, comment with screenshots.
 - **lead-report** — "where did we lose leads this week": queries analytics, reads
   the threads, and writes one summary.
+- **first-message** — "write to this new number / handle / address": the exact
+  form for a first message on each channel (WhatsApp or SMS to a number, a
+  Telegram @username, email, LinkedIn, Discord, X) and the account it goes from.
 - **react-to-events** — "tell me when this person writes", "watch this group",
   "notify me on every new lead": narrows the trigger to the messages you care
   about, then picks what happens — a reply, a note to you, a human takeover, a
